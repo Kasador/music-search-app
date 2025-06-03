@@ -24,6 +24,14 @@ music-search-app/
 └── README.md
 ```
 
+## Project Color Scheme
+
+- #1db954 (**_Green_**)
+- #ffffff (**_White_**)
+- #191414 (**_Black_**)
+- #a3a1a1 (**_Gray_**)
+- #d9d9d9 (**_Light Gray_**)
+
 ## Tech Stack
 
 [![My Skills](https://skillicons.dev/icons?i=react,sass,vite)](https://skillicons.dev)
