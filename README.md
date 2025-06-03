@@ -32,6 +32,14 @@ music-search-app/
 - #a3a1a1 (**_Gray_**)
 - #d9d9d9 (**_Light Gray_**)
 
+## Project Mockups
+
+<img src="https://github.com/user-attachments/assets/db9df9ba-afc1-4f84-8160-3b697823dc42" width="500" alt="Project's Mockups">
+
+<img src="https://github.com/user-attachments/assets/e37cd665-b460-4355-ad6a-c98ce1f9785b" width="500" alt="Project's Mockups">
+
+<img src="https://github.com/user-attachments/assets/49ea0e3e-7e7f-4fd7-b9d9-2ac371a3f856" width="500" alt="Project's Mockups">
+
 ## Tech Stack
 
 [![My Skills](https://skillicons.dev/icons?i=react,sass,vite)](https://skillicons.dev)
