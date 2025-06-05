@@ -5,6 +5,9 @@
 ## Links
 
 - [Github Link](https://github.com/Kasador/music-search-app)
+- [Live URL](https://hunterstevenshaw-music-search-app.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b001261a-fe4c-4215-8bb5-085a4f375371/deploy-status)](https://app.netlify.com/projects/hunterstevenshaw-music-search-app/deploys)
 
 ## Features
 
