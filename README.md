@@ -87,3 +87,9 @@ cd music-search-app
     - npm i --save-dev concurrently (**_Spin up both frontend/backend at the same time_**)
     - npm i dotenv (**_Configuration/use of env variables_**)
     - npm i cors (**_Allowing connection between frontend/backend in production_**)
+
+## Updates 
+
+### Both frontend/backend inital setup complete. Ready to code! 
+
+<img width="635" alt="Image" src="https://github.com/user-attachments/assets/0243737d-1d1b-47d5-a010-c07fef15070a" />
