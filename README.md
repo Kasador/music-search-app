@@ -101,3 +101,7 @@ cd music-search-app
 ### Backend is connected to a MongoDB database.
 
 <img width="559" alt="Image" src="https://github.com/user-attachments/assets/1c97fb4a-7113-4e4a-8893-ce7118b88fe0" />
+
+### Backend hosted on Render. 
+
+![Image](https://github.com/user-attachments/assets/2d46332c-ca8c-4dee-8f51-2d38e7165af4)
