@@ -4,11 +4,12 @@ const Auth = require('../models/Auth');
 
 const getData = async (req, res) => {
     try {
-        const apiKey = process.env.SPOTIFY_API_KEY;
+        const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
+        const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
-        if (!apiKey) {
+        if (!spotifyClientId || spotifyClientSecret) {
             return res.status(500).json({
-                error: 'Api key is missing from the env variables.',
+                error: 'Api credentials are missing from the env variables.',
                 method: req.method
             });
         }
