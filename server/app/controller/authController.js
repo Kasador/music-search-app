@@ -11,16 +11,17 @@ const getData = async (req, res) => {
                 error: 'Api key is missing from the env variables.',
                 method: req.method
             });
-
-            const getAuth = await Auth.find();
-
-            return res.status(200).json({
-                success: true,
-                data: getAuth
-            })
         }
+
+        // const getAuth = await Auth.find();
+
+        return res.status(200).json({
+            success: true,
+            // data: getAuth
+            message: `From /api/v1/auth`,
+        });
     } catch (error) {
-        
+        res.status(500).json(error);
     }
 }
 
