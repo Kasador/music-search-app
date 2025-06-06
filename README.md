@@ -105,3 +105,18 @@ cd music-search-app
 ### Backend hosted on Render. 
 
 ![Image](https://github.com/user-attachments/assets/2d46332c-ca8c-4dee-8f51-2d38e7165af4)
+
+### Added Spotify credentials and created a developer account.
+
+```js 
+try {
+        const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
+        const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+
+        if (!spotifyClientId || spotifyClientSecret) {
+            return res.status(500).json({
+                error: 'Api credentials are missing from the env variables.',
+                method: req.method
+            });
+        }
+```
