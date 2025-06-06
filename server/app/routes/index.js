@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require('./authRoute.js')
 
 router.get('/', (req, res) => { // api/v1 route
     res.status(200).json({
@@ -7,6 +8,6 @@ router.get('/', (req, res) => { // api/v1 route
     });
 });
 
-// router.use('/data', routerFileToController)
+router.use('/OAuth', auth)
 
 module.exports = router;

@@ -47,7 +47,7 @@ music-search-app/
 
 [![My Skills](https://skillicons.dev/icons?i=react,sass,vite)](https://skillicons.dev)
 
-[![My Skills](https://skillicons.dev/icons?i=nodejs,express,postman)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=nodejs,express,postman,mongodb)](https://skillicons.dev)
 
 Frontend:
 
@@ -62,6 +62,7 @@ Backend:
 - Spotify Web API
 - Postman for testing endpoints
 - localStorage
+- MongoDB/ATLAS
 
 Deployment:
 
@@ -96,3 +97,7 @@ cd music-search-app
 ### Both frontend/backend inital setup complete. Ready to code! 
 
 <img width="635" alt="Image" src="https://github.com/user-attachments/assets/0243737d-1d1b-47d5-a010-c07fef15070a" />
+
+### Backend is connected to a MongoDB database.
+
+<img width="559" alt="Image" src="https://github.com/user-attachments/assets/1c97fb4a-7113-4e4a-8893-ce7118b88fe0" />
