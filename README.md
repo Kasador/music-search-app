@@ -113,7 +113,7 @@ try {
         const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
         const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
-        if (!spotifyClientId || spotifyClientSecret) {
+        if (!spotifyClientId || !spotifyClientSecret) {
             return res.status(500).json({
                 error: 'Api credentials are missing from the env variables.',
                 method: req.method
