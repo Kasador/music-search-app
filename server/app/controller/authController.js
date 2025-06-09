@@ -7,7 +7,7 @@ const getData = async (req, res) => {
         const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
         const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
-        if (!spotifyClientId || !spotifyClientSecret) {
+        if (!spotifyClientId || !spotifyClientSecret) { // error handling for no API env var.
             return res.status(500).json({
                 error: 'Api credentials are missing from the env variables.',
                 method: req.method
