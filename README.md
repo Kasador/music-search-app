@@ -86,11 +86,12 @@ cd music-search-app
     - npm create vite@latest (**_Frontend_**)
     - npm i express (**_Backend_**)
     - npm i jsonwebtoken (**_User AUTH_**)
-    - npm i axios (**_Fetch Requests/Reponses__**)
+    - npm i axios (**_Fetch Requests/Reponses_**)
     - npm i --save-dev nodemon (**_Hot Reload on Change - Backend_**)
     - npm i --save-dev concurrently (**_Spin up both frontend/backend at the same time_**)
     - npm i dotenv (**_Configuration/use of env variables_**)
     - npm i cors (**_Allowing connection between frontend/backend in production_**)
+    - npm i mongoose (**_Defining models for the database_**)
 
 ## Updates 
 

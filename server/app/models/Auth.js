@@ -5,4 +5,4 @@ const authSchema = new mongoose.Schema({ // new class model
     data: Schema.Types.Mixed
 });
 
-module.exports = mongoose.model("Auth", authSchema); // defining the 'Weather' model
+module.exports = mongoose.model("Auth", authSchema); // defining the 'Auth' model
