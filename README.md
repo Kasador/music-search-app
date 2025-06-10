@@ -121,3 +121,12 @@ try {
             });
         }
 ```
+
+### Updated frontend application with protected routes.
+
+- if user is not logged in, redirect to login page
+- if the user is auth'd, allow the user to navigate/view other routes. 
+
+<img width="600" alt="Image" src="https://github.com/user-attachments/assets/95d4a165-f84c-4f9f-baa2-c3e3e86dd3eb" />
+
+<img width="600" alt="Image" src="https://github.com/user-attachments/assets/e2c75aa7-4786-4a26-a278-3c95e4141e0c" />

@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const auth = require('./authRoute.js')
+const login = require('./loginRoute.js')
+const callback = require('./callbackRoute.js')
 
 router.get('/', (req, res) => { // api/v1 route
     res.status(200).json({
@@ -8,6 +9,7 @@ router.get('/', (req, res) => { // api/v1 route
     });
 });
 
-router.use('/auth', auth);
+router.use('/login', login); // api/v1/login
+router.use('/callback', callback); // api/v1/callback
 
 module.exports = router;
