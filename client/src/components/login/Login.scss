@@ -1,0 +1,89 @@
+.LoginPage {
+    display: flex;
+    justify-content: center;
+
+    img {
+        border-radius: 10px;
+        position:absolute;
+        top: 50%;
+        left:50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        opacity: .7;
+        z-index: 1;
+
+        width: 80%;
+    }
+}
+.LoginWrapper {
+    color: #ffffff;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        p {
+            color: whitesmoke;
+            font-size: 1.5rem;
+            width: 400px;
+            margin-bottom: 50px;
+        }
+        .SpotifyIcon {
+            width: 80px;
+            height: 80px;
+            color: #24d865;
+            background-color: #191414;
+            padding: 5px;
+            border-radius: 100%;
+        }
+        button { /* https://stackoverflow.com/questions/7274875/center-image-in-html-button */
+            position:relative;
+            border-radius: 20px;
+            width: 300px;
+            height: 60px;
+            font-size: 2rem;
+            background-color: #24d865;
+            border: 1px solid #191414;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+
+            transition: all 0.3s;
+
+            span {
+                display: flex;
+                align-items: center;
+                padding-left: 15px;
+                margin-bottom: 5px;
+
+                transition: all 1s;
+
+                svg {
+                    width: 25px;
+                    height: 25px;
+                    margin-top: 5px;
+                    padding: 5px;
+                }
+            }
+
+            &:hover { /* https://getcssscan.com/css-box-shadow-examples */
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                cursor: pointer;
+                border-top-right-radius: 100px;
+                border-bottom-right-radius: 50px;
+              
+                span {
+                    transform: translateX(60px);
+
+                    transition: all 1s;
+                }           
+            }
+          
+        }
+}
