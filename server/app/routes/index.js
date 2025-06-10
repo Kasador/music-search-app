@@ -8,6 +8,6 @@ router.get('/', (req, res) => { // api/v1 route
     });
 });
 
-router.use('/auth', auth)
+router.use('/auth', auth);
 
 module.exports = router;
