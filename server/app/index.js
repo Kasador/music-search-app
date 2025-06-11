@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser')
 const routeHandler = require('./routes');
 
 const app = express();
@@ -7,6 +8,8 @@ const app = express();
 // middlewares 
 app.use(express.json());
 app.use(cors());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded());
 
 app.get('/', (req, res) => { // /
     res.status(200).json({

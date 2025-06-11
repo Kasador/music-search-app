@@ -1,4 +1,4 @@
-// auth controller 
+// login controller 
 const axios = require('axios');
 const Auth = require('../models/Auth');
 // https://developer.spotify.com/documentation/web-api/tutorials/code-flow
@@ -23,18 +23,35 @@ const loginAuth = async (req, res) => {
         //     // data: getAuth
         //     message: `From /api/v1/login`,
         // });
-        var state = generateRandomString(16);
-        var scope = 'user-read-private user-read-email';
+        console.log('before redirect');
+        console.log('Client ID:', spotifyClientId);
+        console.log('Redirect URI:', spotifyRedirectUri);
+        
+        console.log('state', scope);
+        let state = generateRandomString(16);
+        let scope = 'user-read-private user-read-email';
+        console.log('state', scope);
 
         res.redirect('https://accounts.spotify.com/authorize?' +
             querystring.stringify({
-            response_type: 'code',
+            response_type: '200',
             client_id: spotifyClientId,
             scope: scope,
             redirect_uri: spotifyRedirectUri,
             state: state
         }));
+        // const params = new URLSearchParams({
+        //     response_type: 'code',
+        //     client_id: spotifyClientId,
+        //     scope: scope,
+        //     redirect_uri: spotifyRedirectUri,
+        //     state: state
+        // })
+        // console.log('Query String: ', params)
+        // res.redirect('https://accounts.spotify.com/authorize?' + params.toString());
+        // console.log(res)
     } catch (error) {
+        console.error('Internal Server Error')
         res.status(500).json(error);
     }
 }

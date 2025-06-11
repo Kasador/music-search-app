@@ -31,6 +31,18 @@ const getCallback = async (req, res) => {
             },
                 json: true
             };
+
+            // make a post request
+            const response = await axios.post(authOptions.url, authOptions.form, {
+                headers: authOptions.headers
+            });
+
+            console.log(res);
+            res.status(200).json({
+                success: true,
+                data: response,
+                message: 'callback request worked!'
+            })
         }
     } catch (error) {
         res.status(500).json(error);
