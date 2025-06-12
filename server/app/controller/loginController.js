@@ -1,7 +1,19 @@
 // login controller 
 const axios = require('axios');
 const Auth = require('../models/Auth');
+const querystring = require('node:querystring');
 // https://developer.spotify.com/documentation/web-api/tutorials/code-flow
+
+const generateRandomString = (length) => { // https://developer.spotify.com/documentation/web-playback-sdk/howtos/web-app-player
+    let text = '';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+};
 
 const loginAuth = async (req, res) => {
     try {
@@ -26,15 +38,18 @@ const loginAuth = async (req, res) => {
         console.log('before redirect');
         console.log('Client ID:', spotifyClientId);
         console.log('Redirect URI:', spotifyRedirectUri);
-        
-        console.log('state', scope);
-        let state = generateRandomString(16);
-        let scope = 'user-read-private user-read-email';
-        console.log('state', scope);
+
+        const state = generateRandomString(16);
+        console.log("State:", state)
+        const scope = 'user-read-private user-read-email';
+        console.log('Scope:', scope);
+
+        res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+        res.header('Access-Control-Allow-Credentials', 'true');
 
         res.redirect('https://accounts.spotify.com/authorize?' +
             querystring.stringify({
-            response_type: '200',
+            response_type: 'code',
             client_id: spotifyClientId,
             scope: scope,
             redirect_uri: spotifyRedirectUri,
@@ -49,10 +64,13 @@ const loginAuth = async (req, res) => {
         // })
         // console.log('Query String: ', params)
         // res.redirect('https://accounts.spotify.com/authorize?' + params.toString());
-        // console.log(res)
+        console.log(res);
     } catch (error) {
-        console.error('Internal Server Error')
-        res.status(500).json(error);
+        // console.error('Internal Server Error')
+        res.status(500).json({ 
+            error: 'Internal server error',
+            message: error.message
+        });
     }
 }
 

@@ -7,9 +7,12 @@ const app = express();
 
 // middlewares 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    credentials: true
+}));
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => { // /
     res.status(200).json({
