@@ -1,7 +1,7 @@
 // login controller 
 const axios = require('axios');
 const Auth = require('../models/Auth');
-const querystring = require('node:querystring');
+const querystring = require('querystring');
 // https://developer.spotify.com/documentation/web-api/tutorials/code-flow
 // https://community.spotify.com/t5/Spotify-for-Developers/Refresh-Token-API-returning-CORS-errors/td-p/5217897
 
@@ -17,6 +17,7 @@ const generateRandomString = (length) => { // https://developer.spotify.com/docu
 };
 
 const loginAuth = async (req, res) => {
+    console.log("login route")
     try {
         const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
         const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
@@ -50,20 +51,19 @@ const loginAuth = async (req, res) => {
         // res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
         // res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
-        const authSpotifyURI = ('https://accounts.spotify.com/authorize?' +
-            querystring.stringify({
+        const authSpotifyURI = querystring.stringify({
             response_type: 'code',
             client_id: spotifyClientId,
             scope: scope,
             redirect_uri: spotifyRedirectUri,
-            state: state,
-        }));
+            // state: state,
+        });
         
-        res.json({
-            authSpotifyURI: authSpotifyURI,
-            state: state
-        })
-        // res.redirect('https://accounts.spotify.com/authorize?' +
+        // res.json({
+        //     authSpotifyURI: authSpotifyURI,
+        //     state: state
+        // })
+        res.redirect(`https://accounts.spotify.com/authorize?${authSpotifyURI}`);
         //     querystring.stringify({
         //     response_type: 'code',
         //     client_id: spotifyClientId,

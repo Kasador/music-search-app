@@ -9,22 +9,22 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 
 function Login() {
 
-        const loginUser = async () => {
-            try {
-                const getdata = await axios.get('http://localhost:3000/api/v1/login', {
-                    headers: {
-                      "Content-Type": "application/x-www-form-urlencoded",
-                        "Access-Control-Allow-Origin": "*",  
-                    }
-                })
-                console.log(getdata);
-                console.log("Auth URL: ", getdata.data.authSpotifyURI);
-                const authURL = getdata.data.authSpotifyURI;
-                window.location.href = authURL;
-            } catch (error) {
-                throw new Error(error)
-            }
-        };
+        // const loginUser = async () => {
+        //     try {
+        //         await axios.get('https://fb32-2600-8801-3888-1c00-bdc6-c040-13a2-e585.ngrok-free.app/api/v1/login');
+        //         // console.log(getdata);
+        //         // console.log("Auth URL: ", getdata.data.authSpotifyURI);
+        //         // const authURL = getdata.data.authSpotifyURI;
+                // window.location.href = authURL;
+        //     } catch (error) {
+        //         throw new Error(error)
+        //     }
+        // };
+
+        const handleClickEvent = () => {
+            console.log('redirected')
+            window.location.href = ' https://525b-2600-8801-3888-1c00-bdc6-c040-13a2-e585.ngrok-free.app/api/v1/login';
+        }
 
     return (
         <section className="LoginPage">
@@ -33,7 +33,7 @@ function Login() {
                 <FaSpotify className="SpotifyIcon"/>
                 <h1>Please Login</h1>
                 <p>In order to seach for artists or songs, you must login to your Spotify account.</p>
-                <button onClick={loginUser}>
+                <button onClick={handleClickEvent}>
                     <span>Login <FaArrowRightToBracket /></span>  
                 </button>
             </div>
