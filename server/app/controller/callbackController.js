@@ -7,7 +7,9 @@ const getCallback = async (req, res) => {
     try {
         const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
         const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-        const spotifyRedirectUri = "http://localhost:5173/"
+        const spotifyRedirectUri = process.env.SPOTIFY_REDIRECT_URI;
+
+        console.log('callback client ID:', spotifyClientId);
 
         let code = req.query.code || null;
         let state = req.query.state || null;
@@ -18,6 +20,8 @@ const getCallback = async (req, res) => {
                 error: 'state_mismatch'
             }));
         } else {
+            // const homePageURL = "http://localhost:5173/"
+
             let authOptions = {
             url: 'https://accounts.spotify.com/api/token',
             form: {
@@ -27,7 +31,10 @@ const getCallback = async (req, res) => {
             },
             headers: {
                 'content-type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + (new Buffer.from(spotifyClientId + ':' + spotifyClientSecret).toString('base64'))
+                'Authorization': 'Basic ' + (new Buffer.from(spotifyClientId + ':' + spotifyClientSecret).toString('base64')),
+                // 'Access-Control-Allow-Origin': '*'
+                        // res.setHeader("Access-Control-Allow-Origin", "*");
+        // res.setHeader("Access-Control-Allow-Credentials", "true");
             },
                 json: true
             };
@@ -37,13 +44,24 @@ const getCallback = async (req, res) => {
                 headers: authOptions.headers
             });
 
-            console.log(res);
+            // console.log('code', code)
+            console.log(response.data)
+            // console.log(res);
+            //  res.status(200).json({
+            //     success: true,
+            //     authenticated: true,
+            //     access_token: access_token,
+            //     refresh_token: refresh_token,
+            //     expires_in: expires_in,
+            //     message: 'Authentication successful!'
+            // });
+            res.redirect('http://localhost:5173/');
             
-            res.status(200).json({
-                success: true,
-                data: response,
-                message: 'callback request worked!'
-            })
+            // res.status(200).json({
+            //     success: true,
+            //     data: response,
+            //     message: 'callback request worked!'
+            // })
         }
     } catch (error) {
         res.status(500).json(error);

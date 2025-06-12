@@ -3,6 +3,7 @@ const axios = require('axios');
 const Auth = require('../models/Auth');
 const querystring = require('node:querystring');
 // https://developer.spotify.com/documentation/web-api/tutorials/code-flow
+// https://community.spotify.com/t5/Spotify-for-Developers/Refresh-Token-API-returning-CORS-errors/td-p/5217897
 
 const generateRandomString = (length) => { // https://developer.spotify.com/documentation/web-playback-sdk/howtos/web-app-player
     let text = '';
@@ -44,17 +45,33 @@ const loginAuth = async (req, res) => {
         const scope = 'user-read-private user-read-email';
         console.log('Scope:', scope);
 
-        res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
-        res.header('Access-Control-Allow-Credentials', 'true');
+        // res.setHeader("Access-Control-Allow-Origin", "*");
+        // res.setHeader("Access-Control-Allow-Credentials", "true");
+        // res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+        // res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
-        res.redirect('https://accounts.spotify.com/authorize?' +
+        const authSpotifyURI = ('https://accounts.spotify.com/authorize?' +
             querystring.stringify({
             response_type: 'code',
             client_id: spotifyClientId,
             scope: scope,
             redirect_uri: spotifyRedirectUri,
-            state: state
+            state: state,
         }));
+        
+        res.json({
+            authSpotifyURI: authSpotifyURI,
+            state: state
+        })
+        // res.redirect('https://accounts.spotify.com/authorize?' +
+        //     querystring.stringify({
+        //     response_type: 'code',
+        //     client_id: spotifyClientId,
+        //     scope: scope,
+        //     redirect_uri: spotifyRedirectUri,
+        //     state: state,
+        // }));
+        
         // const params = new URLSearchParams({
         //     response_type: 'code',
         //     client_id: spotifyClientId,
@@ -64,7 +81,7 @@ const loginAuth = async (req, res) => {
         // })
         // console.log('Query String: ', params)
         // res.redirect('https://accounts.spotify.com/authorize?' + params.toString());
-        console.log(res);
+        // console.log(res);
     } catch (error) {
         // console.error('Internal Server Error')
         res.status(500).json({ 

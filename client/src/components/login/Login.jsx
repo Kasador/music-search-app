@@ -17,7 +17,10 @@ function Login() {
                         "Access-Control-Allow-Origin": "*",  
                     }
                 })
-                console.log(getdata)
+                console.log(getdata);
+                console.log("Auth URL: ", getdata.data.authSpotifyURI);
+                const authURL = getdata.data.authSpotifyURI;
+                window.location.href = authURL;
             } catch (error) {
                 throw new Error(error)
             }
