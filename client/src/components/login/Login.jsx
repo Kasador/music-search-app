@@ -11,7 +11,12 @@ function Login() {
 
         const loginUser = async () => {
             try {
-                const getdata = await axios.get('http://localhost:3000/api/v1/login')
+                const getdata = await axios.get('http://localhost:3000/api/v1/login', {
+                    headers: {
+                      "Content-Type": "application/x-www-form-urlencoded",
+                        "Access-Control-Allow-Origin": "*",  
+                    }
+                })
                 console.log(getdata)
             } catch (error) {
                 throw new Error(error)
