@@ -10,7 +10,7 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 function Login() {
         const handleClickEvent = () => {
             console.log('redirected')
-            window.location.href = ' https://525b-2600-8801-3888-1c00-bdc6-c040-13a2-e585.ngrok-free.app/api/v1/login';
+            window.location.href = 'https://424c-2600-8801-3888-1c00-9170-478a-53a4-b1a6.ngrok-free.app/api/v1/login';
         }
 
     return (

@@ -32,8 +32,18 @@ const getCallback = async (req, res) => {
         // make a post request
         const response = await axios(authOptions);
 
-        // console.log('code', code)
-        console.log(response.data)
+        // console.log('code', code) // make the doc to save into db
+        console.log("Data that came back from res", response.data)
+        const data = response.data;
+        const newAuth = new Auth({
+            access_token: data.access_token,
+            expires_in: data.expires_in,
+            refresh_token: data.refresh_token
+        });
+
+        console.log("Data to be saved: ", newAuth);
+        // save data to database
+        await newAuth.save();
 
         res.redirect('http://localhost:5173/');
     } catch (error) {
