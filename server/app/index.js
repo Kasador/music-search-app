@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => { // /
+app.get('/', (req, res) => { // localhost/
     res.status(200).json({
         success: true,
         message: `Server is up and running...`,
