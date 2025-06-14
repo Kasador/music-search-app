@@ -1,6 +1,7 @@
 // auth controller 
 const axios = require('axios');
 const Auth = require('../models/Auth');
+const jwt = require('jsonwebtoken');
 // https://developer.spotify.com/documentation/web-api/tutorials/code-flow
 
 const getCallback = async (req, res) => {
@@ -8,6 +9,7 @@ const getCallback = async (req, res) => {
         const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
         const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
         const spotifyRedirectUri = process.env.SPOTIFY_REDIRECT_URI;
+        const jwtSecret = process.env.JWT_SECRET;
 
         console.log('callback client ID:', spotifyClientId);
         console.log('callback URI:', spotifyRedirectUri);
@@ -41,11 +43,21 @@ const getCallback = async (req, res) => {
             refresh_token: data.refresh_token
         }); // https://mongoosejs.com/docs/timestamps.html // https://mongoosejs.com/docs/api/document.html#Document.prototype.save()
 
+        // deconstruct tokens // https://www.youtube.com/watch?v=AcYF18oGn6Y
+        const { access_token, refresh_token } = data;
+
+        const token = jwt.sign( // https://www.npmjs.com/package/jsonwebtoken
+            { access_token, refresh_token },
+            jwtSecret,
+            { expiresIn: '1hr'}
+        );
+
+        console.log('JWT Token: ', token);
         console.log("Data to be saved: ", newAuth);
         // save data to database
         await newAuth.save();
 
-        res.redirect('http://localhost:5173/');
+        res.redirect(`http://localhost:5173/?token=${token}`); // redirect with saved token in a query string to unlock protected routes.
     } catch (error) {
         console.error(error.message)
         res.status(500).json({
