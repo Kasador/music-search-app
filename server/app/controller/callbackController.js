@@ -39,7 +39,7 @@ const getCallback = async (req, res) => {
             access_token: data.access_token,
             expires_in: data.expires_in,
             refresh_token: data.refresh_token
-        });
+        }); // https://mongoosejs.com/docs/timestamps.html // https://mongoosejs.com/docs/api/document.html#Document.prototype.save()
 
         console.log("Data to be saved: ", newAuth);
         // save data to database
