@@ -1,5 +1,5 @@
 // image for bg of login
-import LoginBG from '../../assets/images/login_img.png'
+// import LoginBG from '../../assets/images/login_img.png'
 // import SCSS
 import './Home.scss'
 // React Icons for SVG Spotify Icon
