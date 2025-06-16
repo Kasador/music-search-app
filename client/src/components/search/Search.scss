@@ -1,0 +1,36 @@
+.SearchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+.SpotifyIcon {
+    font-size: 2.5rem;
+    margin-top: 5px;
+    margin-right: 15px;
+}
+.SearchIcon {
+    font-size: 1.74rem;
+    // margin-top: 5px;
+    padding: 4px;
+    margin-left: -5px;
+    background-color: #24d865;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #858585;
+
+    transition: all 0.2s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: green;
+    }
+}
+#search-input {
+    padding: 5px 20px;
+    width: 300px;
+    font-size: 1.3rem;
+}

@@ -1,0 +1,17 @@
+.HomePage {
+    z-index: 10;
+}
+#Home_BG {
+    // border-radius: 10px;
+    position:absolute;
+    top: 50%;
+    left:50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: .6;
+    z-index: -1;
+    // border-top-right-radius: 30%;
+
+    width: 100%;
+}

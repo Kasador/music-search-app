@@ -1,0 +1,28 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        padding: 10px;
+    }
+    a {
+        padding: 10px;
+        font-weight: bold;
+        color: gray;
+        font-size: 1.0rem;
+        text-decoration: underline;
+        text-underline-offset: 5px; // https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-offset
+
+        transition: all 0.2s;
+
+        &:hover {
+            cursor: pointer;
+            color: #24d865;
+        }
+    }
+}
