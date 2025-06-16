@@ -1,0 +1,28 @@
+.Logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 10px;
+    // background-color: #303030;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    span {
+        font-weight: bold;
+    }
+
+     &:hover {
+        cursor: pointer;
+        color: #24d865;
+    }
+}
+.LogoutIcons {
+    font-size: 1.8rem;
+    // margin-top: 5px;
+    padding: 4px;
+    margin-left: -5px;
+}

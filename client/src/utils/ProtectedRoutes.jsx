@@ -38,9 +38,6 @@ const ProtectedRoutes = () => {
         }
 
         setLoading(false); // after it runs the checks, then change to false, which would cancel out the null and return my protected routes.
-        // if (localStorage.getItem('token') !== null) { // https://stackoverflow.com/questions/3262605/how-to-check-whether-a-storage-item-is-set
-        //     setIsAuth(true);
-        // } else {
     },[navigate]); // if state change in the useNavigate hook, which are redirects, then run the effect again.
 
     if (loading) return null; // prevents react from rendering a route that is in progress

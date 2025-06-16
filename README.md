@@ -187,3 +187,7 @@ const ProtectedRoutes = () => {
 
 export default ProtectedRoutes;
 ```
+
+### Huge frontend update; added layout, searchbar, footer, logout btn, etc. 
+
+<img width="700" alt="Image" src="https://github.com/user-attachments/assets/1c0733bc-bd57-42d2-a970-f31801ed3bcc" />
