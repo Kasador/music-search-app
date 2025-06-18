@@ -1,7 +1,8 @@
 // auth middleware
 const isAuth = async (req, res, next) => {
-    console.log('middleware');
-    req.user = 'Hunter';
+    const { token } = req.headers;
+
+    console.log('Middleware Token Value:', token);
     next();
 }
 
