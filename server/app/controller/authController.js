@@ -6,8 +6,8 @@ const OAuth = async (req, res) => {
     console.log("Token Value:", token);
 
     res.status(200).json({
-        message: `My name is ${req.user}.`,
-        token: `${token}`
+        success: true,
+        message: `Valid tokens and input.`
     })
 };
 
