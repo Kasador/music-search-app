@@ -37,10 +37,24 @@ const getCallback = async (req, res) => {
         // console.log('code', code) // make the doc to save into db
         console.log("Data that came back from res", response.data)
         const data = response.data;
+
+        let userOptions = {
+            url: 'https://api.spotify.com/v1/me',
+            method: 'get',
+            headers: {
+                'Authorization': `Bearer ${data.access_token}`
+            }
+        }
+
+        const userResponse = await axios(userOptions);
+        console.log("User ID: ", userResponse.data);
+        const userData = userResponse.data
+
         const newAuth = new Auth({
             access_token: data.access_token,
             expires_in: data.expires_in,
-            refresh_token: data.refresh_token
+            refresh_token: data.refresh_token,
+            user_id: userData.id
         }); // https://mongoosejs.com/docs/timestamps.html // https://mongoosejs.com/docs/api/document.html#Document.prototype.save()
 
         // deconstruct tokens // https://www.youtube.com/watch?v=AcYF18oGn6Y
