@@ -50,26 +50,47 @@ const getCallback = async (req, res) => {
         console.log("User ID: ", userResponse.data);
         const userData = userResponse.data
 
-        const newAuth = new Auth({
-            access_token: data.access_token,
-            expires_in: data.expires_in,
-            refresh_token: data.refresh_token,
-            user_id: userData.id
-        }); // https://mongoosejs.com/docs/timestamps.html // https://mongoosejs.com/docs/api/document.html#Document.prototype.save()
+        // const newAuth = new Auth({
+        //     access_token: data.access_token,
+        //     expires_in: data.expires_in,
+        //     refresh_token: data.refresh_token,
+        //     user_id: userData.id
+        // }); // https://mongoosejs.com/docs/timestamps.html // https://mongoosejs.com/docs/api/document.html#Document.prototype.save()
+        const existingAuth = await Auth.findOne({ user_id: userData.id }); // look for the user id if already exists in db
 
-        // deconstruct tokens // https://www.youtube.com/watch?v=AcYF18oGn6Y
-        const { access_token, refresh_token } = data;
+        if (!existingAuth) { // if not, make a new doc and save to db
+            const newAuth = new Auth({
+                access_token: data.access_token,
+                expires_in: data.expires_in,
+                refresh_token: data.refresh_token,
+                user_id: userData.id
+            });
+
+            console.log("Data to be saved: ", newAuth);
+            await newAuth.save();
+        } else { // else, find and update the doc on login
+            await Auth.findOneAndUpdate({ user_id: userData.id },
+                {
+                    access_token: data.access_token,
+                    expires_in: data.expires_in,
+                    refresh_token: data.refresh_token,
+                    // updatedAt: new Date()
+                },
+                { new: true } // get back the document after the update has been applied
+            );
+
+            console.log('Data already existed and updated!')
+        }
+        // // deconstruct tokens // https://www.youtube.com/watch?v=AcYF18oGn6Y
+        // const { access_token, refresh_token } = data;
 
         const token = jwt.sign( // https://www.npmjs.com/package/jsonwebtoken
-            { access_token, refresh_token },
+            { user_id: userData.id },
             jwtSecret,
-            { expiresIn: '1hr'}
+            { expiresIn: '1h'} // not 1hr, but 1h.
         );
 
         console.log('JWT Token: ', token);
-        console.log("Data to be saved: ", newAuth);
-        // save data to database
-        await newAuth.save();
 
         res.redirect(`http://localhost:5173/?token=${token}`); // redirect with saved token in a query string to unlock protected routes.
     } catch (error) {
