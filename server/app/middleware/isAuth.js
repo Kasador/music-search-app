@@ -60,7 +60,7 @@ const isAuth = async (req, res, next) => {
             tokenData.set({
                 access_token: userData.access_token,
                 expires_in: userData.expires_in,
-                refresh_token: userData.refresh_token,
+                refresh_token: userData.refresh_token || refresh_token, // refresh good to go and if Spotify don't give me back another one, use the same one
                 user_id: userId
             });
             await tokenData.save();
@@ -76,7 +76,7 @@ const isAuth = async (req, res, next) => {
         };
 
         console.log('Middleware Token Decoded:', decoded);
-        console.log('Middleware Access Token', decoded.access_token);
+        // console.log('Middleware Access Token', decoded.access_token);
         // const accessToken = access.access_token
 
         next();
