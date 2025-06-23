@@ -3,15 +3,15 @@ const axios = require('axios');
 
 const OAuth = async (req, res) => {
     const { token, input} = req.headers;
-    const { access_token } = req.user;
+    const { accessToken } = req.user;
 
     console.log("Input Value:", input);
     console.log("Token Value:", token);
-    console.log("Access Value:", access_token);
+    console.log("Access Value:", accessToken);
 
     const data = await axios.get("https://api.spotify.com/v1/search", { // https://developer.spotify.com/documentation/web-api/reference/search
         headers: { // headers to auth with access token... 
-            Authorization: `Bearer ${access_token}`
+            Authorization: `Bearer ${accessToken}`
         },
         params: { // params to query
             q: input,
