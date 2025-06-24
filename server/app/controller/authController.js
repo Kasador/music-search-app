@@ -9,7 +9,7 @@ const OAuth = async (req, res) => {
     console.log("Token Value:", token);
     console.log("Access Value:", accessToken);
 
-    const data = await axios.get("https://api.spotify.com/v1/search", { // https://developer.spotify.com/documentation/web-api/reference/search
+    const resData = await axios.get("https://api.spotify.com/v1/search", { // https://developer.spotify.com/documentation/web-api/reference/search
         headers: { // headers to auth with access token... 
             Authorization: `Bearer ${accessToken}`
         },
@@ -20,12 +20,12 @@ const OAuth = async (req, res) => {
         }
     });
 
-    console.log(data.data.tracks);
+    console.log(resData.data.tracks);
 
     return res.status(200).json({
         success: true,
         message: `Valid tokens and input.`,
-        data: data.data.tracks
+        data: resData.data.tracks
     })
 };
 

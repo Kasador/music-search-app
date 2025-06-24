@@ -56,7 +56,7 @@ const isAuth = async (req, res, next) => {
 
             const newAccessToken = userData.access_token;
             // const newExpiresIn = userData.expires_in;
-            
+
             tokenData.set({
                 access_token: userData.access_token,
                 expires_in: userData.expires_in,
@@ -69,7 +69,7 @@ const isAuth = async (req, res, next) => {
         }
 
         // req.user = decoded;
-        req.user = { // 
+        req.user = { // send as request user and their data/info
             userId,
             accessToken: validAccessToken,
             refreshToken: refresh_token
