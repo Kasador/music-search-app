@@ -43,34 +43,55 @@ function Search() {
             <TbMusicSearch className="SearchIcon" onClick={handleSubmit}/>
             {/* <p>Current Value: {inputValue}</p> */}
             {console.log("Input Value:", inputValue)}
-            <div style={{ // change this to the ul buddy... oh hunter...
+            <div style={{
                 position: 'absolute',
                 top: 100,
                 left: 10,
                 textAlign: 'left',
-                width: '80vw'
+                width: '80vw',
+                color: 'white'
             }}>
-                {storeData && 
-                    storeData.items.map(item => {
-                        return (
-                                <ul style={{ // just test data, change this and obviously this is rendering out individual ul > li on each item. dumbbb.. lol 
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    padding: 5,
-                                    margin: 5,
-                                    // padding: "10px",
-                                    color: 'white',
-                                    fontWeight: 'bold'
-                                }}>
-                                    <li style={{
-                                        padding: 5,
-                                        margin: 5,
-                                        listStyleType: 'none'
-                                    }}>{item.name} by {item.artists[0].name} ({item.album.release_date})</li>
-                                </ul>
-                        );
-                    })
-                }
+                {/* Tracks */}
+                {storeData?.tracks?.items?.length > 0 && (
+                    <>
+                        <h3>Tracks</h3>
+                        <ul>
+                            {storeData.tracks.items.map((track, index) => (
+                                <li key={`track-${index}`}>
+                                    {track.name} by {track.artists[0]?.name} ({track.album?.release_date})
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+
+                {/* Albums */}
+                {storeData?.albums?.items?.length > 0 && (
+                    <>
+                        <h3>Albums</h3>
+                        <ul>
+                            {storeData.albums.items.map((album, index) => (
+                                <li key={`album-${index}`}>
+                                    {album.name} by {album.artists[0]?.name} ({album.release_date})
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+
+                {/* Artists */}
+                {storeData?.artists?.items?.length > 0 && (
+                    <>
+                        <h3>Artists</h3>
+                        <ul>
+                            {storeData.artists.items.map((artist, index) => (
+                                <li key={`artist-${index}`}>
+                                    {artist.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
             </div>
         </section>
     )
