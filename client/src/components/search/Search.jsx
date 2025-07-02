@@ -19,7 +19,7 @@ function Search() {
         // setInputValue(inputText);
         // handleInputValue();
 
-        const search = await axios.get('http://localhost:3000/api/v1/auth', {
+        const search = await axios.get(`${import.meta.env.VITE_API_URL}/auth`, {
             headers: {
                 input: inputText,
                 token: token
