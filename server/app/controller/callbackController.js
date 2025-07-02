@@ -92,7 +92,7 @@ const getCallback = async (req, res) => {
 
         console.log('JWT Token: ', token);
 
-        res.redirect(`http://localhost:5173/?token=${token}`); // redirect with saved token in a query string to unlock protected routes.
+        res.redirect(`https://hunterstevenshaw-music-search-app.netlify.app/?token=${token}`); // redirect with saved token in a query string to unlock protected routes.
     } catch (error) {
         console.error(error.message)
         res.status(500).json({
