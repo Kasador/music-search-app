@@ -60,7 +60,8 @@ function Search() {
                 </thead>
                 <tbody>
                 {storeData.tracks.items.map((track, index) => (
-                    <tr key={track.id}>
+                    <tr key={track.id}
+                        onClick={() => window.open(track.external_urls.spotify, '_blank')} >
                     <td>{index + 1}</td>
                     <td className="title-cell">
                         <img src={track.album.images[2]?.url} alt="album" />
