@@ -16,7 +16,7 @@ const OAuth = async (req, res) => {
         params: { // params to query
             q: input,
             type: 'track,album,artist',
-            limit: 10
+            limit: 50
         }
     });
     
