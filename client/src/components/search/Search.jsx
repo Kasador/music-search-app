@@ -7,7 +7,7 @@ import axios from 'axios';
 // DOCS >>> https://stackoverflow.com/questions/36683770/how-to-get-the-value-of-an-input-field-using-reactjs
 
 function Search() {
-    const [inputValue, setInputValue] = useState('');
+    // const [inputValue, setInputValue] = useState('');
     const [storeData, setStoreData] = useState(null);
     const inputRef = useRef();
 
@@ -16,7 +16,7 @@ function Search() {
         // console.log("Input Value: ", inputValue);
         const inputText = inputRef.current.value;
         const token = localStorage.getItem('token');
-        setInputValue(inputText);
+        // setInputValue(inputText);
         // handleInputValue();
 
         const search = await axios.get('http://localhost:3000/api/v1/auth', {
@@ -31,48 +31,56 @@ function Search() {
         inputRef.current.value = '';
     }
 
-    // const handleInputValue = () => {
-    //     // e.preventDefault();
+    const millisToMinutes = (ms) => { // https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
+        const minutes = Math.floor(ms / 60000);
+        const seconds = ((ms % 60000) / 1000).toFixed(0);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    };
 
-    //     setInputValue(inputRef.current.value);
-    // }
     return (
-        <section className="SearchBar">
-            <label name="search"><FaSpotify className="SpotifyIcon"/></label>
-            <input htmlFor='search' placeholder='song, artist, track...' id="search-input" ref={inputRef} />
-            <TbMusicSearch className="SearchIcon" onClick={handleSubmit}/>
-            {/* <p>Current Value: {inputValue}</p> */}
-            {console.log("Input Value:", inputValue)}
-            <div style={{ // change this to the ul buddy... oh hunter...
-                position: 'absolute',
-                top: 100,
-                left: 10,
-                textAlign: 'left',
-                width: '80vw'
-            }}>
-                {storeData && 
-                    storeData.items.map(item => {
-                        return (
-                                <ul style={{ // just test data, change this and obviously this is rendering out individual ul > li on each item. dumbbb.. lol 
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    padding: 5,
-                                    margin: 5,
-                                    // padding: "10px",
-                                    color: 'white',
-                                    fontWeight: 'bold'
-                                }}>
-                                    <li style={{
-                                        padding: 5,
-                                        margin: 5,
-                                        listStyleType: 'none'
-                                    }}>{item.name} by {item.artists[0].name} ({item.album.release_date})</li>
-                                </ul>
-                        );
-                    })
-                }
+        <>
+            <div className="SearchBar">
+                <label htmlFor="search"><FaSpotify className="SpotifyIcon" /></label>
+                <input placeholder="artist, album, song..." id="search-input" ref={inputRef} />
+                <TbMusicSearch className="SearchIcon" onClick={handleSubmit} />
             </div>
-        </section>
+
+            {/* Scrollable Table Below */}
+            <div className="spotify-table-container">
+           {storeData && storeData.tracks?.items?.length > 0 && (
+            <table className="spotify-table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Album</th>
+                    <th>Release</th>
+                    <th>Duration</th>
+                </tr>
+                </thead>
+                <tbody>
+                {storeData.tracks.items.map((track, index) => (
+                    <tr key={track.id}>
+                    <td>{index + 1}</td>
+                    <td className="title-cell">
+                        <img src={track.album.images[2]?.url} alt="album" />
+                        <div>
+                        <div className="track-name">{track.name}</div>
+                        <div className="artist-name">
+                            {track.artists.map(a => a.name).join(', ')}
+                        </div>
+                        </div>
+                    </td>
+                    <td>{track.album.name}</td>
+                    <td>{track.album.release_date}</td>
+                    <td>{millisToMinutes(track.duration_ms)}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            )}
+            </div>
+        </>
     )
 }
 
